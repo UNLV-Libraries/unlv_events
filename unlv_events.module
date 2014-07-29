@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Code for the UNLV Events feature.
+ * Code for the UNLV Events Calendar feature.
  */
 
 include_once 'unlv_events.features.inc';

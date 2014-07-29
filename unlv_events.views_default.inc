@@ -11,7 +11,7 @@ function unlv_events_views_default_views() {
   $export = array();
 
   $view = new view();
-  $view->name = 'calendar';
+  $view->name = 'calendar_unlv_events';
   $view->description = '';
   $view->tag = 'Calendar';
   $view->base_table = 'node';
@@ -47,23 +47,23 @@ function unlv_events_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['hide_alter_empty'] = FALSE;
-  /* Field: Field: Date */
-  $handler->display->display_options['fields']['field_eventdate']['id'] = 'field_eventdate';
-  $handler->display->display_options['fields']['field_eventdate']['table'] = 'field_data_field_eventdate';
-  $handler->display->display_options['fields']['field_eventdate']['field'] = 'field_eventdate';
-  $handler->display->display_options['fields']['field_eventdate']['label'] = '';
-  $handler->display->display_options['fields']['field_eventdate']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_eventdate']['settings'] = array(
-    'format_type' => 'long',
+  /* Field: Content: Event Date */
+  $handler->display->display_options['fields']['field_unlv_eventdate']['id'] = 'field_unlv_eventdate';
+  $handler->display->display_options['fields']['field_unlv_eventdate']['table'] = 'field_data_field_unlv_eventdate';
+  $handler->display->display_options['fields']['field_unlv_eventdate']['field'] = 'field_unlv_eventdate';
+  $handler->display->display_options['fields']['field_unlv_eventdate']['label'] = '';
+  $handler->display->display_options['fields']['field_unlv_eventdate']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_unlv_eventdate']['settings'] = array(
+    'format_type' => 'unlv_events_time_ampm',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Sort criterion: Content: Date -  start date (field_date) */
-  $handler->display->display_options['sorts']['field_date_value']['id'] = 'field_date_value';
-  $handler->display->display_options['sorts']['field_date_value']['table'] = 'field_data_field_date';
-  $handler->display->display_options['sorts']['field_date_value']['field'] = 'field_date_value';
+  /* Sort criterion: Content: Event Date (field_unlv_eventdate) */
+  $handler->display->display_options['sorts']['field_unlv_eventdate_value']['id'] = 'field_unlv_eventdate_value';
+  $handler->display->display_options['sorts']['field_unlv_eventdate_value']['table'] = 'field_data_field_unlv_eventdate';
+  $handler->display->display_options['sorts']['field_unlv_eventdate_value']['field'] = 'field_unlv_eventdate_value';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -74,6 +74,7 @@ function unlv_events_views_default_views() {
 
   /* Display: Month */
   $handler = $view->new_display('page', 'Month', 'page_1');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'date_views_pager';
   $handler->display->display_options['pager']['options']['date_id'] = 'month';
@@ -100,7 +101,7 @@ function unlv_events_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['default_argument_type'] = 'date';
   $handler->display->display_options['arguments']['date_argument']['add_delta'] = 'yes';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
-    'field_data_field_eventdate.field_eventdate_value' => 'field_data_field_eventdate.field_eventdate_value',
+    'field_data_field_unlv_eventdate.field_unlv_eventdate_value' => 'field_data_field_unlv_eventdate.field_unlv_eventdate_value',
   );
   $handler->display->display_options['path'] = 'events';
   $handler->display->display_options['menu']['type'] = 'default tab';
@@ -113,6 +114,7 @@ function unlv_events_views_default_views() {
 
   /* Display: Week */
   $handler = $view->new_display('page', 'Week', 'page_2');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'date_views_pager';
   $handler->display->display_options['pager']['options']['date_id'] = 'week';
@@ -140,9 +142,9 @@ function unlv_events_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['granularity'] = 'week';
   $handler->display->display_options['arguments']['date_argument']['add_delta'] = 'yes';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
-    'field_data_field_eventdate.field_eventdate_value' => 'field_data_field_eventdate.field_eventdate_value',
+    'field_data_field_unlv_eventdate.field_unlv_eventdate_value' => 'field_data_field_unlv_eventdate.field_unlv_eventdate_value',
   );
-  $handler->display->display_options['path'] = 'calendar-node-field-date/week';
+  $handler->display->display_options['path'] = 'events/week';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Week';
   $handler->display->display_options['menu']['weight'] = '2';
@@ -150,6 +152,7 @@ function unlv_events_views_default_views() {
 
   /* Display: Day */
   $handler = $view->new_display('page', 'Day', 'page_3');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'date_views_pager';
   $handler->display->display_options['pager']['options']['date_id'] = 'day';
@@ -176,9 +179,9 @@ function unlv_events_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['default_argument_type'] = 'date';
   $handler->display->display_options['arguments']['date_argument']['granularity'] = 'day';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
-    'field_data_field_eventdate.field_eventdate_value' => 'field_data_field_eventdate.field_eventdate_value',
+    'field_data_field_unlv_eventdate.field_unlv_eventdate_value' => 'field_data_field_unlv_eventdate.field_unlv_eventdate_value',
   );
-  $handler->display->display_options['path'] = 'calendar-node-field-date/day';
+  $handler->display->display_options['path'] = 'events/day';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Day';
   $handler->display->display_options['menu']['weight'] = '3';
@@ -186,6 +189,7 @@ function unlv_events_views_default_views() {
 
   /* Display: Year */
   $handler = $view->new_display('page', 'Year', 'page');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'date_views_pager';
   $handler->display->display_options['pager']['options']['date_id'] = 'year';
@@ -213,23 +217,13 @@ function unlv_events_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['hide_alter_empty'] = FALSE;
-  /* Field: Content: Date */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_date']['id'] = 'field_date';
   $handler->display->display_options['fields']['field_date']['table'] = 'field_data_field_date';
   $handler->display->display_options['fields']['field_date']['field'] = 'field_date';
   $handler->display->display_options['fields']['field_date']['label'] = '';
   $handler->display->display_options['fields']['field_date']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_date']['hide_alter_empty'] = FALSE;
-  $handler->display->display_options['fields']['field_date']['settings'] = array(
-    'format_type' => 'short',
-    'fromto' => 'both',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-    'show_repeat_rule' => '',
-  );
-  $handler->display->display_options['fields']['field_date']['group_rows'] = FALSE;
-  $handler->display->display_options['fields']['field_date']['delta_offset'] = '0';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Date: Date (node) */
   $handler->display->display_options['arguments']['date_argument']['id'] = 'date_argument';
@@ -240,9 +234,9 @@ function unlv_events_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['granularity'] = 'year';
   $handler->display->display_options['arguments']['date_argument']['add_delta'] = 'yes';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
-    'field_data_field_eventdate.field_eventdate_value' => 'field_data_field_eventdate.field_eventdate_value',
+    'field_data_field_unlv_eventdate.field_unlv_eventdate_value' => 'field_data_field_unlv_eventdate.field_unlv_eventdate_value',
   );
-  $handler->display->display_options['path'] = 'calendar-node-field-date/year';
+  $handler->display->display_options['path'] = 'events/year';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Year';
   $handler->display->display_options['menu']['weight'] = '4';
@@ -252,6 +246,7 @@ function unlv_events_views_default_views() {
   $handler = $view->new_display('block', 'Block', 'block_1');
   $handler->display->display_options['defaults']['use_ajax'] = FALSE;
   $handler->display->display_options['use_ajax'] = TRUE;
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'date_views_pager';
   $handler->display->display_options['pager']['options']['date_id'] = 'mini';
@@ -276,12 +271,13 @@ function unlv_events_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['default_argument_type'] = 'date';
   $handler->display->display_options['arguments']['date_argument']['add_delta'] = 'yes';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
-    'field_data_field_eventdate.field_eventdate_value' => 'field_data_field_eventdate.field_eventdate_value',
+    'field_data_field_unlv_eventdate.field_unlv_eventdate_value' => 'field_data_field_unlv_eventdate.field_unlv_eventdate_value',
   );
 
   /* Display: Upcoming */
   $handler = $view->new_display('block', 'Upcoming', 'block_2');
   $handler->display->display_options['display_description'] = 'Upcoming events block';
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
@@ -313,7 +309,7 @@ function unlv_events_views_default_views() {
   $handler->display->display_options['filters']['date_filter']['date_fields'] = array(
     'field_data_field_eventdate.field_eventdate_value' => 'field_data_field_eventdate.field_eventdate_value',
   );
-  $export['calendar'] = $view;
+  $export['calendar_unlv_events'] = $view;
 
   return $export;
 }

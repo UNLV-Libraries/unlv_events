@@ -30,20 +30,20 @@ function unlv_events_views_api() {
  */
 function unlv_events_node_info() {
   $items = array(
-    'feed_item_unlv_calendar' => array(
-      'name' => t('Feed Item UNLV Calendar'),
-      'base' => 'node_content',
-      'description' => '',
-      'has_title' => '1',
-      'title_label' => t('Event Title'),
-      'help' => '',
-    ),
     'feed_unlv_calendar' => array(
       'name' => t('Feed from UNLV Calendar'),
       'base' => 'node_content',
       'description' => t('Nodes that hold UNLV calendar event feeds'),
       'has_title' => '1',
       'title_label' => t('UNLV Calendar Feed Title'),
+      'help' => '',
+    ),
+    'feed_unlv_calendar_item' => array(
+      'name' => t('Feed Item from UNLV Calendar'),
+      'base' => 'node_content',
+      'description' => t('Nodes that hold the actual events from UNLV calendar event feeds'),
+      'has_title' => '1',
+      'title_label' => t('Event Title'),
       'help' => '',
     ),
   );

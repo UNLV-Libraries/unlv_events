@@ -10,103 +10,14 @@
 function unlv_events_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-feed_item_unlv_calendar-field_description'.
-  $fields['node-feed_item_unlv_calendar-field_description'] = array(
+  // Exported field: 'node-feed_unlv_calendar_item-field_unlv_eventdate'.
+  $fields['node-feed_unlv_calendar_item-field_unlv_eventdate'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_description',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(),
-      'translatable' => '0',
-      'type' => 'text_long',
-    ),
-    'field_instance' => array(
-      'bundle' => 'feed_item_unlv_calendar',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'hidden',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '0',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_description',
-      'label' => 'Description',
-      'required' => 0,
-      'settings' => array(
-        'better_formats' => array(
-          'allowed_formats' => array(
-            'html_full' => 0,
-            'html_limited' => 'html_limited',
-            'plain_text' => 'plain_text',
-          ),
-          'allowed_formats_toggle' => 1,
-          'default_order_toggle' => 0,
-          'default_order_wrapper' => array(
-            'formats' => array(
-              'html_full' => array(
-                'weight' => '0',
-              ),
-              'html_limited' => array(
-                'weight' => '0',
-              ),
-              'plain_text' => array(
-                'weight' => '10',
-              ),
-            ),
-          ),
-        ),
-        'text_processing' => '1',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'rows' => '5',
-        ),
-        'type' => 'text_textarea',
-        'weight' => '2',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-feed_item_unlv_calendar-field_eventdate'.
-  $fields['node-feed_item_unlv_calendar-field_eventdate'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_eventdate',
+      'field_name' => 'field_unlv_eventdate',
       'foreign keys' => array(),
       'indexes' => array(),
       'locked' => '0',
@@ -130,15 +41,22 @@ function unlv_events_field_default_fields() {
       'type' => 'datetime',
     ),
     'field_instance' => array(
-      'bundle' => 'feed_item_unlv_calendar',
+      'bundle' => 'feed_unlv_calendar_item',
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '2',
+          'module' => 'date',
+          'settings' => array(
+            'format_type' => 'long',
+            'fromto' => 'both',
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+          ),
+          'type' => 'date_default',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -148,8 +66,8 @@ function unlv_events_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_eventdate',
-      'label' => 'Date',
+      'field_name' => 'field_unlv_eventdate',
+      'label' => 'Event Date',
       'required' => 0,
       'settings' => array(
         'default_value' => 'now',
@@ -162,6 +80,7 @@ function unlv_events_field_default_fields() {
         'active' => 1,
         'module' => 'date',
         'settings' => array(
+          'display_all_day' => 0,
           'increment' => 15,
           'input_format' => 'm/d/Y - g:i:sa',
           'input_format_custom' => '',
@@ -170,19 +89,108 @@ function unlv_events_field_default_fields() {
           'year_range' => '-3:+3',
         ),
         'type' => 'date_text',
-        'weight' => '1',
+        'weight' => '3',
       ),
     ),
   );
 
-  // Exported field: 'node-feed_item_unlv_calendar-field_eventlink'.
-  $fields['node-feed_item_unlv_calendar-field_eventlink'] = array(
+  // Exported field: 'node-feed_unlv_calendar_item-field_unlv_eventdescription'.
+  $fields['node-feed_unlv_calendar_item-field_unlv_eventdescription'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_eventlink',
+      'field_name' => 'field_unlv_eventdescription',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'feed_unlv_calendar_item',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 1,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_unlv_eventdescription',
+      'label' => 'Event Description',
+      'required' => 0,
+      'settings' => array(
+        'better_formats' => array(
+          'allowed_formats' => array(
+            'html_full' => 'html_full',
+            'html_limited' => 'html_limited',
+            'plain_text' => 'plain_text',
+          ),
+          'allowed_formats_toggle' => 0,
+          'default_order_toggle' => 0,
+          'default_order_wrapper' => array(
+            'formats' => array(
+              'html_full' => array(
+                'weight' => '0',
+              ),
+              'html_limited' => array(
+                'weight' => '0',
+              ),
+              'plain_text' => array(
+                'weight' => '10',
+              ),
+            ),
+          ),
+        ),
+        'text_processing' => '1',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '3',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-feed_unlv_calendar_item-field_unlv_eventlink'.
+  $fields['node-feed_unlv_calendar_item-field_unlv_eventlink'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_unlv_eventlink',
       'foreign keys' => array(),
       'indexes' => array(),
       'locked' => '0',
@@ -206,17 +214,17 @@ function unlv_events_field_default_fields() {
       'type' => 'link_field',
     ),
     'field_instance' => array(
-      'bundle' => 'feed_item_unlv_calendar',
+      'bundle' => 'feed_unlv_calendar_item',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => '1',
+          'weight' => 2,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -226,8 +234,8 @@ function unlv_events_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_eventlink',
-      'label' => 'Link',
+      'field_name' => 'field_unlv_eventlink',
+      'label' => 'Event Link',
       'required' => 0,
       'settings' => array(
         'attributes' => array(
@@ -241,7 +249,6 @@ function unlv_events_field_default_fields() {
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 1,
-        'rel_remove' => 'default',
         'title' => 'none',
         'title_maxlength' => '128',
         'title_value' => '',
@@ -254,16 +261,16 @@ function unlv_events_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '3',
+        'weight' => '2',
       ),
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Date');
-  t('Description');
-  t('Link');
+  t('Event Date');
+  t('Event Description');
+  t('Event Link');
 
   return $fields;
 }

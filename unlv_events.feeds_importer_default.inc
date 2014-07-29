@@ -16,7 +16,7 @@ function unlv_events_feeds_importer_default() {
   $feeds_importer->id = 'rss_unlv_event_xml';
   $feeds_importer->config = array(
     'name' => 'RSS UNLV Event XML',
-    'description' => 'An RSS feed importer for official UNLV calendar events',
+    'description' => 'An RSS feed importer used to import official UNLV events',
     'fetcher' => array(
       'plugin_key' => 'FeedsHTTPFetcher',
       'config' => array(
@@ -31,28 +31,28 @@ function unlv_events_feeds_importer_default() {
       'config' => array(
         'sources' => array(
           'xpathparser:0' => 'title',
-          'xpathparser:4' => 'description',
-          'xpathparser:1' => 'link',
-          'xpathparser:2' => 'guid',
-          'xpathparser:3' => 'event:eventdate',
+          'xpathparser:1' => 'description',
+          'xpathparser:2' => 'link',
+          'xpathparser:3' => 'guid',
+          'xpathparser:4' => 'event:eventdate',
         ),
         'rawXML' => array(
           'xpathparser:0' => 0,
-          'xpathparser:4' => 0,
           'xpathparser:1' => 0,
           'xpathparser:2' => 0,
           'xpathparser:3' => 0,
+          'xpathparser:4' => 0,
         ),
         'context' => '//item',
         'exp' => array(
-          'errors' => 1,
+          'errors' => 0,
           'debug' => array(
-            'xpathparser:4' => 'xpathparser:4',
             'context' => 0,
             'xpathparser:0' => 0,
             'xpathparser:1' => 0,
             'xpathparser:2' => 0,
             'xpathparser:3' => 0,
+            'xpathparser:4' => 0,
           ),
         ),
         'allow_override' => 0,
@@ -71,30 +71,30 @@ function unlv_events_feeds_importer_default() {
             'unique' => FALSE,
           ),
           1 => array(
-            'source' => 'xpathparser:4',
-            'target' => 'field_description',
+            'source' => 'xpathparser:1',
+            'target' => 'field_unlv_eventdescription',
             'unique' => FALSE,
           ),
           2 => array(
-            'source' => 'xpathparser:1',
-            'target' => 'field_eventlink:url',
+            'source' => 'xpathparser:2',
+            'target' => 'field_unlv_eventlink:url',
             'unique' => FALSE,
           ),
           3 => array(
-            'source' => 'xpathparser:2',
+            'source' => 'xpathparser:3',
             'target' => 'guid',
             'unique' => 1,
           ),
           4 => array(
-            'source' => 'xpathparser:3',
-            'target' => 'field_eventdate:start',
+            'source' => 'xpathparser:4',
+            'target' => 'field_unlv_eventdate:start',
             'unique' => FALSE,
           ),
         ),
         'update_existing' => '0',
         'input_format' => 'html_limited',
         'skip_hash_check' => 0,
-        'bundle' => 'feed_item_unlv_calendar',
+        'bundle' => 'feed_unlv_calendar_item',
       ),
     ),
     'content_type' => 'feed_unlv_calendar',
