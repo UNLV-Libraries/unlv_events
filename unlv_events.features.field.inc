@@ -35,7 +35,7 @@ function unlv_events_field_default_fields() {
         ),
         'timezone_db' => 'UTC',
         'todate' => '',
-        'tz_handling' => 'date',
+        'tz_handling' => 'utc',
       ),
       'translatable' => '0',
       'type' => 'datetime',
