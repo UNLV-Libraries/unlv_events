@@ -35,6 +35,7 @@ function unlv_events_feeds_importer_default() {
           'xpathparser:2' => 'link',
           'xpathparser:3' => 'guid',
           'xpathparser:4' => 'event:eventdate',
+          'xpathparser:5' => 'event:eventdate2',
         ),
         'rawXML' => array(
           'xpathparser:0' => 0,
@@ -42,6 +43,7 @@ function unlv_events_feeds_importer_default() {
           'xpathparser:2' => 0,
           'xpathparser:3' => 0,
           'xpathparser:4' => 0,
+          'xpathparser:5' => 0,
         ),
         'context' => '//item',
         'exp' => array(
@@ -53,6 +55,7 @@ function unlv_events_feeds_importer_default() {
             'xpathparser:2' => 0,
             'xpathparser:3' => 0,
             'xpathparser:4' => 0,
+            'xpathparser:5' => 0,
           ),
         ),
         'allow_override' => 0,
@@ -88,6 +91,11 @@ function unlv_events_feeds_importer_default() {
           4 => array(
             'source' => 'xpathparser:4',
             'target' => 'field_unlv_eventdate:start',
+            'unique' => FALSE,
+          ),
+          5 => array(
+            'source' => 'xpathparser:5',
+            'target' => 'field_unlv_eventdate:end',
             'unique' => FALSE,
           ),
         ),

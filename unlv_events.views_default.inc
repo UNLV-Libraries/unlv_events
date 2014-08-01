@@ -11,11 +11,11 @@ function unlv_events_views_default_views() {
   $export = array();
 
   $view = new view();
-  $view->name = 'calendar_unlv_events';
+  $view->name = 'unlv_events_calendar';
   $view->description = '';
   $view->tag = 'Calendar';
   $view->base_table = 'node';
-  $view->human_name = 'Calendar';
+  $view->human_name = 'UNLV Events Calendar';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
@@ -53,14 +53,18 @@ function unlv_events_views_default_views() {
   $handler->display->display_options['fields']['field_unlv_eventdate']['field'] = 'field_unlv_eventdate';
   $handler->display->display_options['fields']['field_unlv_eventdate']['label'] = '';
   $handler->display->display_options['fields']['field_unlv_eventdate']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_unlv_eventdate']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['field_unlv_eventdate']['settings'] = array(
-    'format_type' => 'unlv_events_time_ampm',
+    'format_type' => 'short',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
     'multiple_to' => '',
+    'show_repeat_rule' => '',
   );
-  /* Sort criterion: Content: Event Date (field_unlv_eventdate) */
+  $handler->display->display_options['fields']['field_unlv_eventdate']['group_rows'] = FALSE;
+  $handler->display->display_options['fields']['field_unlv_eventdate']['delta_offset'] = '0';
+  /* Sort criterion: Content: Event Date -  start date (field_unlv_eventdate) */
   $handler->display->display_options['sorts']['field_unlv_eventdate_value']['id'] = 'field_unlv_eventdate_value';
   $handler->display->display_options['sorts']['field_unlv_eventdate_value']['table'] = 'field_data_field_unlv_eventdate';
   $handler->display->display_options['sorts']['field_unlv_eventdate_value']['field'] = 'field_unlv_eventdate_value';
@@ -99,6 +103,7 @@ function unlv_events_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['field'] = 'date_argument';
   $handler->display->display_options['arguments']['date_argument']['default_action'] = 'default';
   $handler->display->display_options['arguments']['date_argument']['default_argument_type'] = 'date';
+  $handler->display->display_options['arguments']['date_argument']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['date_argument']['add_delta'] = 'yes';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
     'field_data_field_unlv_eventdate.field_unlv_eventdate_value' => 'field_data_field_unlv_eventdate.field_unlv_eventdate_value',
@@ -139,6 +144,7 @@ function unlv_events_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['field'] = 'date_argument';
   $handler->display->display_options['arguments']['date_argument']['default_action'] = 'default';
   $handler->display->display_options['arguments']['date_argument']['default_argument_type'] = 'date';
+  $handler->display->display_options['arguments']['date_argument']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['date_argument']['granularity'] = 'week';
   $handler->display->display_options['arguments']['date_argument']['add_delta'] = 'yes';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
@@ -177,6 +183,7 @@ function unlv_events_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['field'] = 'date_argument';
   $handler->display->display_options['arguments']['date_argument']['default_action'] = 'default';
   $handler->display->display_options['arguments']['date_argument']['default_argument_type'] = 'date';
+  $handler->display->display_options['arguments']['date_argument']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['date_argument']['granularity'] = 'day';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
     'field_data_field_unlv_eventdate.field_unlv_eventdate_value' => 'field_data_field_unlv_eventdate.field_unlv_eventdate_value',
@@ -217,13 +224,23 @@ function unlv_events_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['hide_alter_empty'] = FALSE;
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_date']['id'] = 'field_date';
-  $handler->display->display_options['fields']['field_date']['table'] = 'field_data_field_date';
-  $handler->display->display_options['fields']['field_date']['field'] = 'field_date';
-  $handler->display->display_options['fields']['field_date']['label'] = '';
-  $handler->display->display_options['fields']['field_date']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_date']['hide_alter_empty'] = FALSE;
+  /* Field: Content: Event Date */
+  $handler->display->display_options['fields']['field_unlv_eventdate']['id'] = 'field_unlv_eventdate';
+  $handler->display->display_options['fields']['field_unlv_eventdate']['table'] = 'field_data_field_unlv_eventdate';
+  $handler->display->display_options['fields']['field_unlv_eventdate']['field'] = 'field_unlv_eventdate';
+  $handler->display->display_options['fields']['field_unlv_eventdate']['label'] = '';
+  $handler->display->display_options['fields']['field_unlv_eventdate']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_unlv_eventdate']['hide_alter_empty'] = FALSE;
+  $handler->display->display_options['fields']['field_unlv_eventdate']['settings'] = array(
+    'format_type' => 'short',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'show_repeat_rule' => '',
+  );
+  $handler->display->display_options['fields']['field_unlv_eventdate']['group_rows'] = FALSE;
+  $handler->display->display_options['fields']['field_unlv_eventdate']['delta_offset'] = '0';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Date: Date (node) */
   $handler->display->display_options['arguments']['date_argument']['id'] = 'date_argument';
@@ -231,6 +248,7 @@ function unlv_events_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['field'] = 'date_argument';
   $handler->display->display_options['arguments']['date_argument']['default_action'] = 'default';
   $handler->display->display_options['arguments']['date_argument']['default_argument_type'] = 'date';
+  $handler->display->display_options['arguments']['date_argument']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['date_argument']['granularity'] = 'year';
   $handler->display->display_options['arguments']['date_argument']['add_delta'] = 'yes';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
@@ -269,6 +287,7 @@ function unlv_events_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['field'] = 'date_argument';
   $handler->display->display_options['arguments']['date_argument']['default_action'] = 'default';
   $handler->display->display_options['arguments']['date_argument']['default_argument_type'] = 'date';
+  $handler->display->display_options['arguments']['date_argument']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['date_argument']['add_delta'] = 'yes';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
     'field_data_field_unlv_eventdate.field_unlv_eventdate_value' => 'field_data_field_unlv_eventdate.field_unlv_eventdate_value',
@@ -281,16 +300,14 @@ function unlv_events_views_default_views() {
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['pager']['options']['id'] = '0';
-  $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'entity';
+  $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
@@ -309,16 +326,9 @@ function unlv_events_views_default_views() {
   $handler->display->display_options['filters']['date_filter']['default_date'] = 'now';
   $handler->display->display_options['filters']['date_filter']['add_delta'] = 'yes';
   $handler->display->display_options['filters']['date_filter']['date_fields'] = array(
-    'field_data_field_eventdate.field_eventdate_value' => 'field_data_field_eventdate.field_eventdate_value',
+    'field_data_field_unlv_eventdate.field_unlv_eventdate_value' => 'field_data_field_unlv_eventdate.field_unlv_eventdate_value',
   );
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'feed_unlv_calendar_item' => 'feed_unlv_calendar_item',
-  );
-  $export['calendar_unlv_events'] = $view;
+  $export['unlv_events_calendar'] = $view;
 
   return $export;
 }
