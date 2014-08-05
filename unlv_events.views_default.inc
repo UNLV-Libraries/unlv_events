@@ -295,6 +295,8 @@ function unlv_events_views_default_views() {
 
   /* Display: Upcoming */
   $handler = $view->new_display('block', 'Upcoming', 'block_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Upcoming Events';
   $handler->display->display_options['display_description'] = 'Upcoming events block';
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['use_more'] = FALSE;
